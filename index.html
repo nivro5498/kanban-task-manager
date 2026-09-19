@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Organize suas tarefas em um quadro Kanban simples.">
+  <title>Kanban — Meu quadro</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="pular-conteudo" href="#quadro">Pular para o quadro</a>
+  <header class="cabecalho">
+    <a class="marca" href="./index.html" aria-label="Kanban, início"><span class="simbolo" aria-hidden="true">k.</span>kanban<span class="marca-detalhe">/ pessoal</span></a>
+    <span class="cabecalho-nota">Um passo de cada vez.</span>
+  </header>
+
+  <main class="pagina">
+    <section class="introducao" aria-labelledby="titulo">
+      <div>
+        <p class="sobretitulo">SEU ESPAÇO PARA FAZER ACONTECER</p>
+        <h1 id="titulo">Menos bagunça.<br>Mais <span>feito.</span></h1>
+        <p class="descricao">Tire as ideias da cabeça e dê um próximo passo.</p>
+      </div>
+      <a class="botao botao-principal" href="#titulo-tarefa"><span aria-hidden="true">+</span> Nova tarefa</a>
+    </section>
+
+    <section class="nova-tarefa" aria-labelledby="titulo-formulario">
+      <div class="formulario-intro">
+        <h2 id="titulo-formulario">O que vamos fazer?</h2>
+        <p>Comece com uma pequena tarefa.</p>
+      </div>
+      <!-- Próxima etapa: tratar o evento submit em script.js. -->
+      <form id="form-tarefa">
+        <div class="campo campo-titulo">
+          <label for="titulo-tarefa">Título da tarefa</label>
+          <input id="titulo-tarefa" name="titulo" type="text" placeholder="Ex.: estudar eventos em JavaScript" maxlength="120" required aria-describedby="aviso-demo">
+        </div>
+        <div class="campo">
+          <label for="prioridade-tarefa">Prioridade</label>
+          <select id="prioridade-tarefa" name="prioridade">
+            <option value="baixa">Baixa</option>
+            <option value="media" selected>Média</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+        <button class="botao botao-adicionar" type="submit" disabled>Adicionar <span aria-hidden="true">↗</span></button>
+      </form>
+    </section>
+
+    <div class="barra-quadro">
+      <h2 id="titulo-quadro">Meu quadro <span class="total" id="total-tarefas">3 tarefas</span></h2>
+      <span class="legenda"><span class="ponto" aria-hidden="true"></span> Cada etapa conta</span>
+    </div>
+    <p id="aviso-demo" class="aviso">Prévia visual com tarefas de exemplo. Adicionar, mover e excluir serão ativados com JavaScript.</p>
+
+    <section id="quadro" class="quadro" aria-labelledby="titulo-quadro">
+      <!-- Os IDs das listas permitem renderizar os cards pelo JavaScript. -->
+      <section class="coluna coluna-fazer" aria-labelledby="titulo-fazer">
+        <header class="coluna-cabecalho"><h3 id="titulo-fazer"><span class="indicador" aria-hidden="true"></span>A fazer</h3><span id="contador-a-fazer" class="contador" aria-label="1 tarefa">1</span></header>
+        <p class="coluna-descricao">Ideias prontas para sair do papel.</p>
+        <div id="lista-a-fazer" class="lista-tarefas">
+          <article class="card" data-id="1">
+            <div class="card-topo"><span class="prioridade alta">Alta prioridade</span><span class="numero">01</span></div>
+            <h4>Montar a estrutura do projeto</h4>
+            <p>Criar as três colunas e o formulário de novas tarefas.</p>
+            <footer class="card-acoes"><label class="sr-only" for="status-1">Status de Montar a estrutura do projeto</label><select id="status-1" disabled><option>A fazer</option><option>Em andamento</option><option>Concluído</option></select><button class="excluir" type="button" disabled aria-label="Excluir Montar a estrutura do projeto">Excluir</button></footer>
+          </article>
+        </div>
+        <a class="adicionar-coluna" href="#titulo-tarefa"><span aria-hidden="true">+</span> Adicionar tarefa</a>
+      </section>
+
+      <section class="coluna coluna-andamento" aria-labelledby="titulo-andamento">
+        <header class="coluna-cabecalho"><h3 id="titulo-andamento"><span class="indicador" aria-hidden="true"></span>Em andamento</h3><span id="contador-em-andamento" class="contador" aria-label="1 tarefa">1</span></header>
+        <p class="coluna-descricao">Um pouco de foco, um passo à frente.</p>
+        <div id="lista-em-andamento" class="lista-tarefas">
+          <article class="card" data-id="2">
+            <div class="card-topo"><span class="prioridade media">Média prioridade</span><span class="numero">02</span></div>
+            <h4>Dar personalidade ao quadro</h4>
+            <p>Escolher cores, ajustar os cards e cuidar da versão para celular.</p>
+            <footer class="card-acoes"><label class="sr-only" for="status-2">Status de Dar personalidade ao quadro</label><select id="status-2" disabled><option>A fazer</option><option selected>Em andamento</option><option>Concluído</option></select><button class="excluir" type="button" disabled aria-label="Excluir Dar personalidade ao quadro">Excluir</button></footer>
+          </article>
+        </div>
+      </section>
+
+      <section class="coluna coluna-concluido" aria-labelledby="titulo-concluido">
+        <header class="coluna-cabecalho"><h3 id="titulo-concluido"><span class="indicador" aria-hidden="true"></span>Concluído</h3><span id="contador-concluido" class="contador" aria-label="1 tarefa">1</span></header>
+        <p class="coluna-descricao">Pequenas vitórias também são vitórias.</p>
+        <div id="lista-concluido" class="lista-tarefas">
+          <article class="card card-concluido" data-id="3">
+            <div class="card-topo"><span class="prioridade baixa">Baixa prioridade</span><span class="numero">03</span></div>
+            <h4>Planejar o primeiro passo</h4>
+            <p>Definir o objetivo do Kanban e organizar as etapas do desenvolvimento.</p>
+            <footer class="card-acoes"><label class="sr-only" for="status-3">Status de Planejar o primeiro passo</label><select id="status-3" disabled><option>A fazer</option><option>Em andamento</option><option selected>Concluído</option></select><button class="excluir" type="button" disabled aria-label="Excluir Planejar o primeiro passo">Excluir</button></footer>
+          </article>
+        </div>
+      </section>
+    </section>
+    <footer class="rodape"><span>Feito no seu ritmo.</span><span>Seu próximo passo começa aqui <span aria-hidden="true">↗</span></span></footer>
+  </main>
+</body>
+</html>
